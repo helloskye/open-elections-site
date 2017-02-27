@@ -32,7 +32,7 @@
     map.data.addListener('click', function(event){
       var electDist = event.feature.getProperty('elect_dist');
 
-      var content = 'Eletion District: ' + electDist + '<br>';
+      var content = 'Election District: ' + electDist + '<br>';
       infowindow.setContent(content);
       infowindow.setPosition(event.latLng);
       infowindow.open(map);

@@ -56,7 +56,6 @@ class PrecinctVotes(ndb.Model):
     precinct = ndb.StringProperty()
     county = ndb.StringProperty()
     votes = ndb.JsonProperty()
-    precinct_votes = []
 
 class UploadHandler(webapp2.RequestHandler):
     def post(self):
@@ -70,6 +69,13 @@ class UploadHandler(webapp2.RequestHandler):
             precinct_county = entry['county']
             precinct = entry['precinct']
             precinct_votes = entry['votes']
+            precinctVotes = PrecinctVotes( #created instance
+                id = precinct_id,
+                precinct = precinct,
+                county = precinct_county,
+                votes = precinct_votes
+            )
+            precinctVotes.put()
         self.response.out.write('Upload successful')
 
 class PrecinctHandler(webapp2.RequestHandler):
